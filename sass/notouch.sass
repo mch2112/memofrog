@@ -1,0 +1,76 @@
+@import 'global'
+
+#list_header
+  .dismissable_button
+    &:hover
+      background-color: $dismissable-button-hover
+      text-decoration: none
+      &.filter_op
+        background-color: $dismissable-button-op-hover
+
+.btn_img
+  &:hover
+    background-color: $icon-hover-background-color
+    border: 2px solid $icon-hover-border-color !important
+    padding: 1px
+
+div.big_list
+  a:hover
+    text-decoration: none
+
+div.big_list_item
+  &.hoverable
+    &:hover
+      background-color: $big-list-item-hover-background-color
+
+a
+  &:hover, &:focus, &:active
+    text-decoration: underline
+  &.link_button
+    &.hoverable
+      &:hover
+        border: 1px solid rgba(0,132,180,.5)
+        background-image: linear-gradient(rgba(255,255,255,0), rgba(0,132,180,.1))
+        text-decoration: none
+        margin: 0
+
+.submenu
+  a.link_button
+    border: 1px solid rgba(0, 132, 180, 0.2)
+    background-image: linear-gradient(rgba(255,255,255,0), rgba(0,132,180,.03))
+    &:hover
+      border: 1px solid rgba(0,132,180,.5)
+      background-image: linear-gradient(rgba(255,255,255,0), rgba(0,132,180,.1))
+      text-decoration: none
+      &.delete
+        border: 1px solid rgba(180, 132, 0, 0.5)
+        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(180, 132, 0, 0.1))
+      &.disabled
+        border: none
+        background-image: none
+
+.share_icon
+  &.hoverable
+    &:hover
+      border: 2px solid $icon-hover-border-color
+      background-color: $icon-hover-background-color
+      border-radius: 4px
+      box-shadow: #4252ff 0 0 5px
+
+.standard_button:hover
+  text-decoration: none
+  @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.25)))
+  &.disabled
+    @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.02)))
+
+.more_text
+  .get_more, .get_less
+    &:hover
+      background-color: $big-list-item-hover-background-color
+
+.text_button
+  &.enabled
+    &:hover
+      @include background-image(linear-gradient(to bottom, rgba(#008000, 0), rgba(#0084b4, 0.2)))
+      border: 1px solid rgba(#0084b4, .5)
+      padding: 3px 5px

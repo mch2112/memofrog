@@ -1,0 +1,270 @@
+@import 'global'
+
+html
+  height: 100%
+  font-family: $font-stack
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  font-size: 100%
+
+body
+  margin: 0
+  padding: 0
+  color: $content-text-color
+  font-size: 14px
+  background-color: $page-background-color
+  min-height: 100%
+  overflow-y: scroll
+
+div.intro_page
+  height: 100%
+  background-color: #ffffff
+  &.mobile
+    .intro_menu
+      @include justify-content(space-between)
+      width: 100%
+      font-size: 90%
+      padding: 0 10px
+      height: 40px
+      top: 8px
+      a
+        padding: 12px 0
+    .two_col
+      @include display-flex
+      @include flex-direction(column)
+      @include justify-content(space-between)
+    #home_frog
+      height: 80px
+    #home_container
+      h1
+        font-size: 19px
+      h2
+        font-size: 16px
+      p
+        font-size: 12px
+    ul.options
+      padding: 0
+      li
+        font-size: 16px
+        color: #303050
+        font-weight: bold
+        width: 100%
+        text-decoration: none
+        list-style-type: none
+        border: 1px solid $content-border-color
+        margin: 3px 0
+        padding: 6px
+        background-color: #e0f8ff
+        box-sizing: border-box
+
+.intro_menu_container
+  background-color: darkgreen
+  width: 100%
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(center)
+
+.intro_menu
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(center)
+  @include align-items(center)
+  box-sizing: border-box
+  font-size: 130%
+  height: 50px
+  width: 100%
+  max-width: 700px
+  background-color: darkgreen
+  opacity: .9
+  z-index: 20
+  a
+    padding: 15px
+    color: #ffffff
+    font-weight: bold
+    opacity: 1
+
+//noinspection CssOptimizeSimilarProperties
+#home_frog
+  width: 100%
+  height: 110px
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  background-image: url('../images/home_frog.jpg')
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: center
+
+#home_container
+  width: 100%
+  max-width: 700px
+  margin: auto
+  padding: 8px
+  box-sizing: border-box
+  h1
+    font-size: 30px
+    text-align: center
+    margin: 8px 0
+  h2
+    font-size: 24px
+    font-weight: bold
+    text-align: center
+    margin: 6px 0
+  p
+    font-size: 16px
+  ul
+    margin: 5px 0
+
+.offscreen
+  position: absolute
+  left: -999em
+
+.two_col
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(space-between)
+  padding: 6px
+  width: 100%
+  box-sizing: border-box
+  div
+    width: inherit // prevent break on ipad
+
+div.footer
+  padding: 10px 10px 3px 10px
+  font-size: 70%
+  height: 40px
+  width: 100%
+  color: #a0a0a0
+  text-align: center
+  box-sizing: border-box
+  a
+    color: #a0a0a0
+    text-decoration: underline
+
+.standard_form
+  @include display-flex
+  @include flex-direction(column)
+  font-family: $font-stack
+  margin: 10px auto
+  width: 100%
+  padding: 6px
+  color: $content-text-color
+  background-color: #fafafa
+  box-sizing: border-box
+  border: solid 1px $content-border-color
+  fieldset
+    padding: 3px
+    margin: 3px
+    border: 0
+  input
+    &[type="text"], &[type="email"], &[type="password"], &[type="search"]
+      width: 100%
+      padding: 5px
+      border: 1px solid $input-border-color
+      outline: 0
+      box-shadow: inset 0 1px 6px $input-border-color
+      margin: 2px 6px 16px 0
+      box-sizing: border-box
+      &.warning
+        border-color: #d6820b
+      &.error
+        border-color: #dd4b39
+  textarea, select
+    box-sizing: border-box
+    width: 100%
+    padding: 5px
+    border: 1px solid $input-border-color
+    outline: 0
+    box-shadow: inset 0 1px 6px $input-border-color
+    margin: 2px 6px 16px 0
+  textarea
+    height: 200px
+    padding: 5px 0 0 5px
+    width: 100%
+    font-size: 16px
+  select
+    background: $input-background-color no-repeat right
+    -webkit-appearance: none
+    -moz-appearance: none
+    text-indent: 0
+    width: 70%
+  div.button_row
+    @include display-flex
+    @include flex-direction(row)
+    @include justify-content(flex-end)
+    @include align-items(center)
+    margin: 0
+    .standard_button
+      margin: 0 0 0 10px
+      min-width: 100px
+
+form.login_form
+  @extend .standard_form
+  @include flex-direction(column)
+  padding: 0
+  width: 275px
+  .intro_reg_caption
+    font-weight: bold
+    font-size: 120%
+    background-color: #ebf9fd
+    border-bottom: 1px solid #c0c0c0
+    text-align: center
+    width: 100%
+    box-sizing: border-box
+  input[type="submit"]
+    margin: 0 4px 4px 4px
+  label
+    font-size: 85%
+    font-weight: bold
+    color: #909090
+
+#intropage.mobile
+  div.intro_menu
+    @include justify-content(space-between)
+    width: 100%
+    font-size: 90%
+    padding: 0 10px
+    height: 40px
+    top: 8px
+    a
+      padding: 12px 0
+  .two_col
+    @include display-flex
+    @include flex-direction(column)
+    @include justify-content(space-between)
+  #home_frog
+    height: 80px
+  #home_container
+    h1
+      font-size: 19px
+    h2
+      font-size: 16px
+    p
+      font-size: 12px
+  ul.options
+    padding: 0
+    li
+      font-size: 16px
+      color: #303050
+      font-weight: bold
+      width: 100%
+      text-decoration: none
+      list-style-type: none
+      border: 1px solid $content-border-color
+      margin: 3px 0
+      padding: 6px
+      background-color: #e0f8ff
+      box-sizing: border-box
+
+.validation
+  display: none
+  border: none
+  background: none
+  margin: -10px 0 10px
+  padding: 0
+  &.warning
+    color: #d6820b
+  &.error
+    color: #dd4b39
+  &.visible
+    display: block

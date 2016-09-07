@@ -1,0 +1,1268 @@
+@import 'global'
+
+$large-icon-size: 24px
+$mobile-font-size: 14px
+
+html
+  height: 100%
+  font-family: $font-stack
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  font-size: 100%
+
+body
+  margin: 0
+  padding: 0
+  color: $content-text-color
+  font-size: $mobile-font-size
+  background-color: $page-background-color
+  min-height: 100%
+
+#content_frame
+  @include display-flex
+  @include flex-direction(column)
+  margin: 0 auto
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  overflow: hidden
+
+#top_container
+  @include display-flex
+  @include flex-direction(column)
+  @include align-items(center)
+  overflow-y: hidden
+
+#top_panel
+  @include display-flex
+  @include flex-direction(column)
+  @include justify-content(space-between)
+  @include flex-shrink(0)
+  @include flex-grow(0)
+  position: relative
+  min-height: 100%
+  max-width: $column-width
+  width: 100%
+  top: 0
+  margin: 0
+  z-index: 10
+  background-color: $content-background-color
+  box-sizing: border-box
+  padding: 0 4px
+
+#content_container
+  @include display-flex
+  @include flex-direction(column)
+  @include align-items(center)
+  @include flex-shrink($flex-grow-shrink-large)
+  @include flex-grow($flex-grow-shrink-large)
+  overflow-x: auto
+  overflow-y: scroll
+  margin: 0
+  /* momentum scrolling on child div
+  -webkit-overflow-scrolling: touch
+
+#content_panel
+  position: relative
+  width: 100%
+  @include flex-grow($flex-grow-shrink-large)
+  max-width: $column-width
+  padding: 4px
+  box-sizing: border-box
+  background-color: $content-background-color
+
+#menu_bar
+  @include display-flex
+  @include flex-direction(row)
+  padding: 0
+  background-color: #74e8bf
+  @include background-image(linear-gradient(to bottom, #80ffd4, #74e8bf 36px,#74e8bf))
+  .menu_img
+    cursor: pointer
+  .menu_img_help
+    display: block
+  &.disabled
+    .menu_img_home, .menu_img_create, .menu_img_tags, .menu_img_friends, .menu_img_find, .menu_img_account
+      display: none
+  div.spacer
+    display: inline-block
+  input.search-box
+    margin: 2px
+    @include flex-grow(100)
+
+#content_frame
+  input.search-box
+    display: none
+  &.home
+    input.search-box
+      display: inherit
+    #list_header
+      @include display-flex
+  &.not_logged_in
+    input.search-box
+      display: none
+
+#memo_panel
+  max-width: $column-width
+  max-height: 100%
+  height: auto
+  -ms-overflow-style: none
+  padding-bottom: 6px
+  #memo_list
+    overflow-x: hidden
+    margin-top: -4px
+    #memo_list_footer
+      font-weight: bold
+      padding: 8px 2px
+      text-align: center
+
+#list_header
+  @include display-flex
+  display: none
+  #filter_items
+    @include display-flex
+    @include flex-direction(row)
+    @include align-items(center)
+    @include justify-content(flex-start)
+    .header_filter
+      font-family: $font-stack-heading
+      margin: 0 5px
+      padding: 0
+      display: inline-block
+      vertical-align: bottom
+    #header_filter_buttons
+      @include display-flex
+      @include flex-direction(row)
+      @include align-items(center)
+      @include flex-wrap(wrap)
+      margin-left: 0
+    .spacer
+      display: none
+    #header_filter_clear
+      display: none
+      height: 24px
+      width: 24px
+      padding: 0
+      margin: 0
+      @include inline-svg(18, $dismiss-svg-path)
+    #header_filter_text
+      font-size: 120%
+      font-weight: bold
+  #filter_bar
+    @include display-flex
+    @include flex-direction(row)
+    @include align-items(center)
+    #filter_bar_caption
+      @include align-self(flex-end)
+      display: none
+      font-style: italic
+      font-size: 90%
+      color: #909090
+      padding-right: 4px
+      margin: 2px 0
+    .filter_bar_item
+      height: 24px
+      width: 24px
+      background-size: 18px 18px
+      border-radius: 4px
+      margin: 0 1px
+    .img_separator
+      height: 24px
+      width: 12px
+      background-size: 18px 18px
+  .dismissable_button
+    font-family: $font-stack
+    font-weight: bold
+    text-decoration: none
+    border: 1px solid $dismissable-button-border-color
+    border-radius: 5px
+    color: $content-text-color
+    display: inline-block
+    margin: 0 5px
+    padding: 3px
+    &.filter_tag
+      background-color: $dismissable-button-background-tag
+    &.filter_op
+      background-color: $dismissable-button-background-filter-op
+      margin-right: 0
+    &.filter_screen_name
+      background-color: $dismissable-button-background-screen-name
+    &.filter_text
+      background-color: $dismissable-button-background-text
+    &.special_search
+      background-color: $dismissable-button-background-special
+
+div.memo
+  position: relative
+  margin: 6px 0
+  border-radius: 1px
+  min-height: 55px
+  background-color: #FFFFFF
+  .memo_bucket_icon
+    margin: 0 3px 0 0
+  .memo_header
+    @include display-flex
+    @include flex-direction(row)
+    @include align-items(flex-start)
+    margin: 4px 0 0 4px
+    font-size: 90%
+    div
+      display: inline-block
+    .memo_author
+      margin: 0 4px
+      padding: 0
+      width: inherit
+    .indicator
+      display: none
+      height: 14px
+      width: 14px
+      background-size: 14px 14px
+      margin: 0 1px
+  &.star
+    .memo_star_icon
+      display: inline-block
+  &.private
+    .memo_private_icon
+      display: inline-block
+  &.shared
+    .memo_shared_icon
+      display: inline-block
+  &.sync_buckets
+    .memo_sync_buckets_icon
+      display: inline-block
+  &.not_synced
+    .memo_sync_icon
+      display: inline-block
+  &.alarm
+    .memo_alarm_icon
+      display: inline-block
+  .memo_text
+    padding: 6px 5px
+  .expandable_text
+    padding: 6px 5px
+    white-space: pre-wrap
+    word-wrap: break-word
+    > a
+      color: #0000f0
+      &.memo_text_url
+        color: #0084b4
+  .timestamp
+    position: absolute
+    top: 4px
+    right: 4px
+    font-size: 90%
+    text-align: right
+    font-style: italic
+    color: $subtle-color
+  .memo_tools
+    @include display-flex
+    @include flex-direction(row)
+    @include justify-content(space-between)
+    right: 0
+    bottom: 0
+    border-top: solid 1px #e0e0e0
+  .img_separator
+    background-size: 16px 16px
+    width: 10px
+    height: 24px
+    margin: 2px 0
+  .btn_img
+    height: 24px
+    width: 24px
+    background-size: 16px 16px
+    border-radius: 4px
+    margin: 1px
+    display: block
+  .img_edit
+    display: none
+  &.memo.historic
+    .memo_tools
+      display: none
+
+#quick_entry_textarea
+  width: 100%
+  font-size: $input-font-size
+  box-sizing: border-box
+  border: 1px solid $input-border-color
+  @include input-placeholder
+    color: $placeholder-text-color
+    font-style: italic
+
+#outer_alert_box
+  @include flex-direction(row)
+  @include justify-content(center)
+  position: absolute
+  width: 100%
+  z-index: 1000
+  overflow: visible
+  pointer-events: none
+#alert_box
+  background-color: $alert-background-color
+  border-radius: 2px
+  border: 1px solid $alert-border-color
+  padding: 6px
+  pointer-events: auto
+  display: block
+  //box-shadow: rgba(0,0,0,.1) 0 1px 0 inset, rgba(255,255,255,.5) 0 1px 0
+  box-shadow: rgba(#4252ff, 0.4) 0 0 25px, rgba(#378010, 0.2) 0 0 3px 1px inset
+#inner_alert_box
+  @include display-flex
+  @include flex-direction(row)
+  @include align-items(center)
+  @include justify-content(space-between)
+#wt_icn_anim
+  width: 24px
+#alert_box_text
+  text-align: center
+  font-weight: bold
+  display: inline-block
+  font-size: 16px
+#alert_dismiss_icon
+  display: inline-block
+  margin-left: 12px
+  width: 16px
+  height: 22px
+  @include inline-svg(16, $dismiss-svg-path)
+
+input
+  font-size: inherit
+
+.instructions
+  margin: 4px 0
+  border-top: solid 1px $content-border-color
+  border-bottom: solid 1px $content-border-color
+  background: $instructions-background-color
+  padding: 6px
+
+.warning
+  margin: 4px 0
+  border-top: solid 1px $content-border-color
+  border-bottom: solid 1px $content-border-color
+  background: $warning-background-color
+  padding: 6px
+
+.validation
+  display: none
+  border: none
+  background: none
+  margin: -10px 0 10px
+  padding: 0
+  &.warning
+    color: #d6820b
+  &.error
+    color: #dd4b39
+  &.visible
+    display: block
+
+textarea, input
+  font-family: $font-stack
+
+h1, h2, h3, h4, h5, h6
+  font-family: $font-stack-heading
+  font-weight: 700
+  margin: 18px 0 12px 0
+
+.heading, .sub_heading
+  font-family: $font-stack-heading
+  margin: 8px 0 6px 0
+  font-weight: bold
+  text-decoration: none
+
+.heading
+  font-size: $heading-font-size
+  color: $heading-color
+
+.sub_heading
+  font-size: $sub-heading-font-size
+  color: $sub-heading-color
+
+div.big_list
+  margin: 4px
+
+div.big_list_item
+  margin: 0 0 -1px 0
+  padding: 3px
+  font-size: 111%
+  -webkit-column-break-inside: avoid
+  break-inside: avoid-column
+  border-top: 1px solid $content-border-color
+  border-bottom: 1px solid $content-border-color
+  &.hoverable
+    cursor: pointer
+  &.tag
+    @include display-flex
+    @include flex-direction(row)
+    @include justify-content(space-between)
+  &.option_block
+    > div.option_caption
+      font-weight: bold
+      display: block
+      margin: 6px 0 3px 0
+    > div.option_set
+      @include display-flex
+      @include flex-direction(row)
+      @include justify-content(space-between)
+      > div.option_description
+        padding: 5px
+      > div.option_action
+        padding: 5px 10px 5px 5px
+        text-align: right
+    > div.option_comment
+      display: block
+      padding: 5px 15px 5px 5px
+      font-style: italic
+      font-size: 80%
+  &.date_select
+    @include display-flex
+    @include flex-direction(row)
+    @include justify-content(space-between)
+    @include align-items(flex-end)
+    .date_description
+      font-weight: bold
+      &.clear
+        color: #e08080
+    .date_value
+      font-style: italic
+      font-size: 80%
+
+.tag_list_count
+  font-size: 60%
+
+.screen_name, .screen_name_link
+  color: $screen-name-color
+  font-weight: bold
+  font-style: italic
+  text-decoration: none
+
+.hashtag
+  color: $hashtag-color
+  font-style: italic
+  text-decoration: none
+
+p
+  padding: 0 0
+  margin: 5px 0
+  line-height: 160%
+
+span.inline_icon_large
+  margin: 0 4px
+
+ul p
+  padding: 0
+  margin-left: -20px
+  text-indent: 0
+
+img
+  border: 0
+
+button
+  overflow: visible
+  -webkit-appearance: none
+  cursor: pointer
+
+li
+  text-align: inherit
+  padding: 3px 0 3px 0
+
+h1
+  color: $heading-color
+  font-size: 200%
+
+h2
+  color: $heading-color
+  font-size: 150%
+  font-weight: 300
+  line-height: 22px
+
+h3
+  color: $heading-color
+  font-size: 120%
+  font-weight: 300
+  line-height: 22px
+
+hr
+  color: $content-border-color
+
+dl .button
+  margin-left: 20px
+  clear: both
+  width: 300px
+
+dl dt
+  color: $heading-color
+  float: left
+  clear: both
+  font-weight: bold
+  margin: 10px 0 0 20px
+  padding: 5px
+  width: 120px
+
+dl dd
+  margin: 2px 0
+  padding: 5px 0
+
+dl.help
+  margin-top: 0
+  dt
+    float: left
+    clear: both
+    width: 30%
+    margin: 0 0 10px 10px
+    padding: 0 10px 0 5px
+
+  dd
+    float: right
+    clear: none
+    width: 65%
+    margin: 0 0 10px 0
+    padding: 0
+    img
+      margin: 0 5px 0 0
+  .heading, .sub_heading
+    clear: both
+    padding: 8px 3px
+    margin-top: 10px
+    background-color: $heading-background-color
+    border-top: 1px solid #c0c0c0
+    border-bottom: 1px solid #c0c0c0
+  hr
+    clear: both
+
+.nobr
+  white-space: nowrap
+
+a
+  color: $link-text-color
+  text-decoration: none
+  &.link_button
+    font-weight: bold
+    margin: 0
+    cursor: pointer
+    &.not_selected
+      font-weight: normal
+    &.delete
+      color: $link-text-color-delete
+    &.hoverable
+      border-radius: 3px
+      border: 1px solid rgba(0, 132, 180, 0.2)
+      padding: 2px 6px
+
+.submenu
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(flex-start)
+  @include align-items(center)
+  border-top: 1px solid $memo-border-color
+  border-bottom: 1px solid $memo-border-color
+  background-color: #e0e0e0
+  width: 100%
+  box-sizing: border-box
+  height: 30px
+  padding: 2px 0
+  &.right_align
+    @include justify-content(flex-end)
+  div.separator
+    @include inline-svg(16, $separator-svg-path)
+    width: 11px
+    height: 24px
+  div.spacer
+    @include flex-grow($flex-grow-shrink-large)
+  > a.link_button
+    display: inline-block
+    padding: 2px 6px
+    border-radius: 4px
+    text-decoration: none
+    font-size: 16px
+    margin: 0 6px
+    &.disabled
+      border: none
+      background-image: none
+      padding: 2px 6px
+      color: $link-text-color-disabled
+      cursor: default
+p.indent
+  padding-left: 12px
+
+p a
+  text-decoration: underline
+
+span.indent
+  padding-left: 20px
+
+.button, input[type='submit']
+  @extend .standard_button
+  &:disabled
+    color: #909090
+
+.big_button
+  @extend .button
+  margin: 0
+
+.parenthetic
+  font-style: italic
+
+.info_widget
+  display: block
+  margin: 10px 0
+  padding: 0
+  .info_intro
+    font-weight: bold
+    margin-right: 3px
+  .info_link
+    margin-left: 8px
+
+.standard_form
+  @include display-flex
+  @include flex-direction(column)
+  font-family: $font-stack
+  margin: 10px auto
+  width: 100%
+  padding: 6px
+  color: $content-text-color
+  background-color: #fafafa
+  box-sizing: border-box
+  border: solid 1px $content-border-color
+  fieldset
+    padding: 3px
+    margin: 3px
+    border: 0
+  input
+    &[type="text"], &[type="email"], &[type="password"], &[type="search"]
+      width: 100%
+      padding: 5px
+      border: 1px solid $input-border-color
+      outline: 0
+      box-shadow: inset 0 1px 6px $input-border-color
+      margin: 2px 6px 16px 0
+      box-sizing: border-box
+      &.warning
+        border-color: #d6820b
+      &.error
+        border-color: #dd4b39
+  textarea, select
+    box-sizing: border-box
+    width: 100%
+    padding: 5px
+    border: 1px solid $input-border-color
+    outline: 0
+    box-shadow: inset 0 1px 6px $input-border-color
+    margin: 2px 6px 16px 0
+  textarea
+    height: 200px
+    padding: 5px 0 0 5px
+    width: 100%
+    font-size: 16px
+  select
+    background: $input-background-color no-repeat right
+    -webkit-appearance: none
+    -moz-appearance: none
+    text-indent: 0
+    width: 70%
+
+label
+  font-style: italic
+
+input[type="checkbox"], .standard_form input[type="checkbox"]
+  width: 18px
+  height: 18px
+  margin: 0 7px 0 0
+  box-shadow: none
+  + label
+    height: 18px
+    padding: 0 0 8px 0
+  &[disabled] + label
+    opacity: 0.5
+
+.suggested_tags
+  overflow-x: inherit
+  word-break: normal
+  font-size: 120%
+  line-height: 140%
+  margin-top: 20px
+  a.suggested_tag
+    cursor: pointer
+
+.user_memo_bucket_widget
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(flex-start)
+  @include align-items(center)
+  .bucket_info
+    background-size: 16px 16px
+    height: 24px
+    width: 24px
+    margin: 0
+    padding: 0
+  .screen_name
+    font-size: 18px
+
+.friend_details
+  font-size: 80%
+
+.share_tags
+  font-style: italic
+  width: 30%
+
+$share-icon-size: 55
+$share-icon-hoverable-size: 80
+
+//noinspection CssOptimizeSimilarProperties
+.share_icon
+  margin: 0
+  background-repeat: no-repeat
+  background-position: center
+  height: 44px
+  width: 60px
+  box-sizing: border-box
+  display: inline-block
+  padding: 0
+  &.share_in
+    @include inline-svg($share-icon-size, $share-in-path)
+    padding-left: 4px
+    padding-right: 0
+  &.share_in_disabled
+    @include inline-svg($share-icon-size, $share-in-disabled-path)
+    padding-left: 4px
+    padding-right: 0
+  &.share_out
+    @include inline-svg($share-icon-size, $share-out-path)
+    padding-left: 0
+    padding-right: 4px
+  &.share_out_disabled
+    @include inline-svg($share-icon-size, $share-out-disabled-path)
+    padding-left: 0
+    padding-right: 4px
+  &.share_none
+    @include inline-svg($share-icon-size, $blank-path)
+    padding-left: 2px
+    padding-right: 2px
+  &.hoverable
+    padding: 4px
+    height: 84px
+    width: 100px
+    &.share_in
+      @include inline-svg($share-icon-hoverable-size, $share-in-path)
+    &.share_in_disabled
+      @include inline-svg($share-icon-hoverable-size, $share-in-disabled-path)
+    &.share_out
+      @include inline-svg($share-icon-hoverable-size, $share-out-path)
+    &.share_out_disabled
+      @include inline-svg($share-icon-hoverable-size, $share-out-disabled-path)
+    &.share_none
+      @include inline-svg($share-icon-hoverable-size, $blank-path)
+
+.share_graphic
+  @include display-flex
+  @include flex-direction(row)
+  @include justify-content(center)
+  @include align-items(center)
+  width: 100%
+  margin: 0 0 12px 0
+
+.share_memo_count_text
+  padding: 12px 5px 0 0
+  text-align: center
+  font-style: italic
+  width: 180px
+
+.share_intro_text
+  min-height: 50px
+  padding-top: 6px
+  font-style: italic
+
+.standard_button
+  font-weight: bold
+  text-align: center
+  border-radius: 5px
+  box-shadow: rgba(255,255,255,.5) 0 1px 0
+  border: solid 1px #cccccc
+  display: inline-block
+  padding: 6px 10px 7px
+  margin: 0
+  color: #202020
+  box-sizing: border-box
+  background-color: #d8d8d8
+  text-decoration: none
+  cursor: pointer
+  @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.08)))
+  &.cancel
+    color: #707070
+  &.selected
+    box-shadow: rgba(0,0,0,.1) 0 1px 0 inset, rgba(255,255,255,.5) 0 1px 0
+    border: 1px solid #a8a8a8
+    background: rgba(0,0,0,.1)
+  &.delete
+    background-color: #ffc0c0
+    color: #602020
+    border: 1px solid #c09090
+  &:active
+    padding: 7px 9px 6px 11px
+    text-decoration: none
+  &.disabled
+    background-color: #f8f8f8
+    @include background-image(linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.02)))
+
+div.home_text
+  position: fixed
+  top: 70px
+  left: 0
+  max-width: 900px
+  z-index: 10
+  padding: 0 30px
+  color: #ffffff
+  li
+    font-size: 120%
+  p
+    font-size: 120%
+    a
+      color: #ffffff
+
+form.login_form
+  @extend .standard_form
+  @include flex-direction(column)
+  padding: 0
+  width: 275px
+  .intro_reg_caption
+    font-weight: bold
+    font-size: 120%
+    background-color: #ebf9fd
+    border-bottom: 1px solid #c0c0c0
+    text-align: center
+    width: 100%
+    box-sizing: border-box
+  input[type="submit"]
+    margin: 0 4px 4px 4px
+  label
+    font-size: 85%
+    font-weight: bold
+    color: #909090
+
+.offscreen
+  position: absolute
+  left: -999em
+
+div.footer
+  padding: 10px 10px 3px 10px
+  font-size: 70%
+  height: 40px
+  width: 100%
+  color: #a0a0a0
+  text-align: center
+  box-sizing: border-box
+  a
+    color: #a0a0a0
+    text-decoration: underline
+
+div.legal
+  p, li
+    font-size: 80%
+  .heading
+    font-size: 17px
+  .sub_heading
+    font-size: 13px
+
+span.inline_icon
+  width: 14px
+  height: 14px
+  background-size: 14px 14px
+  display: inline-block
+
+span.inline_icon_large
+  width: 16px
+  height: 16px
+  display: inline-block
+  padding-left: 2px
+  padding-right: 4px
+
+#tips
+  width: 100%
+  box-sizing: border-box
+  padding: 0
+  margin: 2px 0 0 0
+  text-align: left
+  background-color: #ffedb4
+  border: 1px solid #caba6e
+  div.tip_content
+    @include display-flex
+    @include flex-direction(row)
+    @include align-items(center)
+    @include justify-content(flex-start)
+  div.tip_icon
+    display: inline-block
+    width: 24px
+    min-width: 24px
+    height: 24px
+    margin-right: 4px
+    @include inline-svg(24, $lightbulb-svg-path)
+  div.tip_text
+    display: inline-block
+    min-height: 24px
+    padding: 2px
+  div.tip_options
+    font-size: 14px
+    text-align: right
+    padding: 2px
+
+#quick_entry_container
+  #quick_entry_toolbar
+    display: none
+  textarea
+    width: 100%
+    font-size: 16px
+    box-sizing: border-box
+    border: 1px solid #bfe0ec
+    height: 30px
+    resize: none
+  &.activated
+    #quick_entry_toolbar
+      @include display-flex
+    textarea
+      height: 76px
+
+input[type="date"]::-webkit-clear-button
+  -webkit-appearance: none
+  display: none
+
+input[type="date"]::-webkit-inner-spin-button
+  -webkit-appearance: none
+  display: none
+
+input#filterTextInput
+  width: 100%
+  border-radius: 4px
+
+// loading icon
+
+$loading-icon-size: 24px
+$loading-icon-segment-width: 2px
+$loading-icon-segment-height: 7px
+$loading-icon-segment-border-radius: 3px
+$loading-icon-segment-offset: ($loading-icon-size - $loading-icon-segment-width) / 2
+
+@include keyframes(wt_icn_anim_keyframes)
+  0%
+    opacity: 1
+  100%
+    opacity: 0
+.wt_icn_anim > div
+  transform-origin: 50% 150%
+.wt_icn_anim > div:nth-of-type(1)
+  @include animation-delay(-0.5s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width)
+.wt_icn_anim > div:nth-of-type(2)
+  @include animation-delay(-0.4s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(30deg)
+.wt_icn_anim > div:nth-of-type(3)
+  @include animation-delay(-0.33s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(60deg)
+.wt_icn_anim > div:nth-of-type(4)
+  @include animation-delay(-0.25s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(90deg)
+.wt_icn_anim > div:nth-of-type(5)
+  @include animation-delay(-0.167s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(120deg)
+.wt_icn_anim > div:nth-of-type(6)
+  @include animation-delay(-0.08s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(150deg)
+.wt_icn_anim > div:nth-of-type(7)
+  @include animation-delay(0s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(180deg)
+.wt_icn_anim > div:nth-of-type(8)
+  @include animation-delay(0.08s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(210deg)
+.wt_icn_anim > div:nth-of-type(9)
+  @include animation-delay(0.167s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(240deg)
+.wt_icn_anim > div:nth-of-type(10)
+  @include animation-delay(0.25s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(270deg)
+.wt_icn_anim > div:nth-of-type(11)
+  @include animation-delay(0.33s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(300deg)
+.wt_icn_anim > div:nth-of-type(12)
+  @include animation-delay(0.4s)
+  transform: translate($loading-icon-segment-offset, $loading-icon-segment-width) rotate(330deg)
+.wt_icn_anim > div
+  @include animation(wt_icn_anim_keyframes 1s linear infinite)
+.wt_icn_anim
+  position: relative
+  background: none
+  width: $loading-icon-size
+  height: $loading-icon-size
+  margin-right: 5px
+  display: none
+  &.loading
+    display: inline-block
+  .wt_icn_seg
+    width: $loading-icon-segment-width
+    height: $loading-icon-segment-height
+    background: #50697c
+    border-radius: $loading-icon-segment-border-radius
+    position: absolute
+
+span.account_name_info
+  span.full_name
+    > span.real_name
+      color: #151819
+    > span.screen_name > a
+      margin-left: 10px
+      font-weight: normal
+      font-style: normal
+      color: #6f7d87
+
+div.more_text
+  width: 100%
+  .get_more, .get_less
+    font-weight: bold
+    text-align: center
+    width: 100%
+    padding: 3px 0
+    margin: -3px 0 0 0
+    &:hover
+      font-weight: bold
+  .get_more
+    display: block
+    cursor: pointer
+    &:after
+      content: " \25bc"
+  .get_less
+    display: none
+    cursor: pointer
+    &:after
+      content: " \25b2"
+  .expandable_text
+    display: none
+  &.expanded
+    .get_more
+      display: none
+    .get_less
+      display: block
+
+div.input_container
+  margin: 12px 0
+  border-radius: 0
+
+div.easter_egg
+  width: 100%
+  height: 100%
+  background-color: #ffffff
+  box-sizing: border-box
+
+.needs_validation
+  display: block
+  padding: 5px 0
+  font-weight: bold
+  text-align: center
+  background-color: #fffff0
+  border: 1px solid #e0e040
+
+.vanished, .suppressed, .dismissed
+  display: none !important
+
+.advisory
+  padding: 5px 0
+  text-align: center
+  display: none
+  &.error
+    display: block
+    background-color: #fff0f0
+    border: 1px solid #f84040
+  &.warning
+    display: block
+    background-color: #fffff0
+    border: 1px solid #e0e040
+  &.info
+    display: block
+    background-color: #f0ffff
+    border: 1px solid #40d0d0
+
+.btn_img
+  height: 24px
+  width: 24px
+  margin: 0
+  background-size: 16px 16px
+  border-radius: 4px
+.img_edit
+  @include img-svg($edit-svg-path)
+
+.img_can_edit
+  @include img-svg($can-edit-off-svg-path)
+.img_can_edit_on
+  @include img-svg($can-edit-on-svg-path)
+.img_details
+  @include img-svg($details-svg-path)
+.img_star
+  @include img-svg($star-off-svg-path)
+.img_star_on
+  @include img-svg($star-on-svg-path)
+.img_alarm
+  @include img-svg($alarm-off-svg-path)
+.img_alarm_on
+  @include img-svg($alarm-on-svg-path)
+
+.img_private
+  @include img-svg($private-off-svg-path)
+
+.img_private_on
+  @include img-svg($private-on-svg-path)
+
+.img_bucket100
+  @include img-svg($active-svg-path)
+.img_bucket110
+  @include img-svg($hotlist-svg-path)
+.img_bucket120
+  @include img-svg($blist-svg-path)
+.img_bucket200
+  @include img-svg($everything-svg-path)
+.img_bucket210
+  @include img-svg($journal-svg-path)
+.img_bucket220
+  @include img-svg($reference-svg-path)
+.img_bucket250
+  @include img-svg($done-svg-path)
+.img_bucket310
+  @include img-svg($trash-svg-path)
+.img_bucket350
+  @include img-svg($hidden-svg-path)
+.img_bucket410
+  @include img-svg($deleted-svg-path)
+.img_bucket510
+  @include img-svg($historic-svg-path)
+.img_separator
+  @include img-svg($separator-svg-path)
+.img_details
+  @include img-svg($details-svg-path)
+.img_home
+  @include img-svg($home-svg-path)
+.img_create
+  @include img-svg($create-svg-path)
+.img_friends
+  @include img-svg($friends-svg-path)
+.img_tags
+  @include img-svg($tags-svg-path)
+.img_find
+  @include img-svg($find-svg-path)
+.img_account
+  @include img-svg($account-svg-path)
+.img_help
+  @include img-svg($help-svg-path)
+.img_blank
+  @include img-svg($blank-path)
+.img_ok
+  @include img-svg($ok-svg-path)
+.img_error
+  @include img-svg($error-svg-path)
+.img_warning
+  @include img-svg($warning-svg-path)
+
+.img_sync_buckets
+  @include img_svg($sync-buckets-off-svg-path)
+
+.img_sync_buckets_on
+  @include img_svg($sync-buckets-on-svg-path)
+.img_sync_indicator
+  @include img-svg($sync-indicator-svg-path)
+.img_star_indicator
+  @include img-svg($star-indicator-svg-path)
+.img_shared_indicator
+  @include img_svg($shared-indicator-svg-path)
+.img_bucket_indicator
+  @include img_svg($sync-bucket-indicator-svg-path)
+.img_edited_indicator
+  @include img_svg($edit-indicator-svg-path)
+.img_private_indicator
+  @include img_svg($private-indicator-svg-path)
+.img_alarm_indicator
+  @include img_svg($alarm-indicator-svg-path)
+
+.btn_container
+  .btn_img
+    &.img_bucket100, &.img_bucket110, &.img_bucket120, &.img_bucket200, &.img_bucket210, &.img_bucket220, &.img_bucket250, &.img_bucket310, &.img_bucket350
+      @include filter(opacity(60%))
+    &:hover
+      border: solid 2px $memo-border-color
+      @include filter(none)
+  &.bucket100 .img_bucket100, &.bucket110 .img_bucket110, &.bucket120 .img_bucket120, &.bucket200 .img_bucket200, &.bucket310 .img_bucket310, &.bucket350 .img_bucket350, &.bucket250 .img_bucket250, &.bucket210 .img_bucket210, &.bucket220 .img_bucket220, &.content2 .menu_img_home, &.content3 .menu_img_account, &.content50 .menu_img_account, &.content5 .menu_img_tags, &.content7 .menu_img_tags, &.content28 .menu_img_create, &.content34 .menu_img_find, &.content40 .menu_img_friends, &.content42 .menu_img_friends, &.content18 .menu_img_friends, &content17 .menu_img_friends, &.content95 .menu_img_help
+    border: solid 2px $memo-border-color
+    //@include filter(opacity(50%))
+    @include filter(none)
+  &.star .img_star
+    @include img-svg($star-on-svg-path)
+  &.alarm .img_alarm
+    @include img-svg($alarm-on-svg-path)
+  &.sync_buckets .img_sync_buckets
+    @include img-svg($sync-buckets-on-svg-path)
+  &.private .img_private
+    @include img-svg($private_on-svg-path)
+  &.can_edit
+    .img_edit
+      display: block
+    .img_can_edit
+      @include img_svg($can-edit-on-svg-path)
+  &.temp .img_details
+    display: none
+
+.memo_bucket_icon
+  border: none !important
+
+#header_filter_icon
+  background-size: 24px 24px
+  width: 24px
+  height: 25px
+  margin-right: 6px
+  @include flex-shrink(0)
+
+a.wrap
+  text-decoration: none
+  font-size: 0
+  &:hover
+    text-decoration: none
+
+div.spacer
+  @include flex-grow(1000)
+
+.form
+  width: 100%
+  color: $content-text-color
+  box-sizing: border-box
+
+.button_bar
+  @include display-flex
+  @include align-items(center)
+  .img_separator
+    background-size: 16px 16px
+    width: 10px
+    height: 24px
+    margin: 2px 4px
+  .button_subbar
+    @include display-flex
+.text_button
+  display: inline-block
+  font-weight: bold
+  margin-left: 14px
+  box-sizing: border-box
+  height: 28px
+  border-radius: 3px
+  padding: 4px 6px
+  color: $link-text-color-disabled
+  cursor: default
+  font-size: 16px
+  &.enabled
+    color: $link-text-color
+    cursor: pointer
+    &.cancel
+      color: $link-text-color-cancel
+
+.memo_text_area
+  box-sizing: border-box
+  width: 100%
+  height: 200px
+  padding: 5px
+  border: 1px solid $input-border-color
+  outline: 0
+  box-shadow: inset 0 1px 6px $input-border-color
+  margin: 2px 0
+  font-size: 16px
+
